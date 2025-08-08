@@ -1,0 +1,54 @@
+<div class="container">
+  <form [formGroup]="loginForm$" (submit)="login()">
+    <img
+      src="../../../assets/images/logo.png"
+      width="100px"
+      height="100px"
+      alt="logo"
+    />
+    <h1>Login</h1>
+
+    <mat-form-field class="username-form" [appearance]="'outline'">
+      <mat-label>email</mat-label>
+      <mat-icon matPrefix>person</mat-icon>
+
+      <input type="email" matInput formControlName="email" />
+
+      @if (loginForm$.get('email')?.hasError('required')) {
+      <mat-error>Please enter a valid email</mat-error>
+      } @if (loginForm$.get('email')?.hasError('email')) {
+      <mat-error>Invalid email</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="password-form" appearance="outline">
+      <mat-label>password</mat-label>
+      <mat-icon matPrefix>lock</mat-icon>
+      <input
+        matInput
+        [type]="showPassword ? 'text' : 'password'"
+        formControlName="password"
+      />
+
+      @if (loginForm$.get('password')?.hasError('required')) {
+      <mat-error>Password is required</mat-error>
+      }
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="loginForm$.invalid"
+      style="padding: 12px; height: 48px; width: 100%; border-radius: 2rem"
+    >
+      Login
+    </button>
+
+    <button
+      mat-button
+      style="padding: 12px; height: 48px; width: 100%"
+      [routerLink]="['/auth/register']"
+    >
+      Register
+    </button>
+  </form>
+</div>

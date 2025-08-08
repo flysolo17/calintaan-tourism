@@ -1,0 +1,46 @@
+<div class="main-container">
+  <mat-toolbar color="primary">
+    <button
+      mat-icon-button
+      class="example-icon"
+      (click)="toggleNavBar(!open)"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Calintaan</span>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav
+      [mode]="screenSize == 'small' ? 'over' : 'side'"
+      [opened]="open"
+      class="navigation"
+    >
+      <mat-nav-list role="list">
+        @for (item of items$; track $index) {
+        <a
+          class="nav-item"
+          mat-list-item
+          [routerLink]="item.route"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <mat-icon matListItemIcon>
+            {{ item.icon }}
+          </mat-icon>
+
+          <div class="label-wrapper">
+            <span class="label-text">
+              {{ item.label }}
+            </span>
+          </div>
+        </a>
+        }
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

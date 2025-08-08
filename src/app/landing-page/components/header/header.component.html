@@ -1,0 +1,27 @@
+<header>
+  <img
+    src="../../../../assets/images/logo.png"
+    width="80px"
+    height="80px"
+    alt="logo"
+  />
+  <nav mat-tab-nav-bar>
+    <a
+      class="mat-tab-link"
+      mat-tab-link
+      *ngFor="let tab of items$"
+      [routerLink]="tab.route"
+      routerLinkActive="active"
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      <mat-icon style="padding-right: 10px">{{ tab.icon }}</mat-icon>
+      {{ tab.label }}
+    </a>
+  </nav>
+  <div class="auth-actions">
+    <button mat-flat-button [color]="'primary'" [routerLink]="['/auth/login']">
+      Login
+    </button>
+  </div>
+</header>

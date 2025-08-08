@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>Create New Product</h2>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="productForm$" class="product-form" (submit)="save()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>SKU</mat-label>
+      <input matInput formControlName="sku" />
+      <mat-error *ngIf="productForm$.get('sku')?.hasError('required')">
+        SKU is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="productForm$.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" formControlName="price" />
+      <mat-error *ngIf="productForm$.get('price')?.hasError('required')">
+        Price is required
+      </mat-error>
+      <mat-error *ngIf="productForm$.get('price')?.hasError('min')">
+        Price must be at least 0
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Category</mat-label>
+      <input matInput formControlName="category" />
+      <mat-error *ngIf="productForm$.get('category')?.hasError('required')">
+        Category is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Stock</mat-label>
+      <input matInput type="number" formControlName="stock" />
+      <mat-error *ngIf="productForm$.get('stock')?.hasError('required')">
+        Stock is required
+      </mat-error>
+      <mat-error *ngIf="productForm$.get('stock')?.hasError('min')">
+        Stock must be at least 0
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Image URL</mat-label>
+      <input matInput formControlName="imageUrl" />
+    </mat-form-field>
+
+    <div *ngIf="productForm$.value.imageUrl" class="image-preview">
+      <img [src]="productForm$.value.imageUrl" alt="Preview" />
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="save()"
+    [disabled]="productForm$.invalid"
+    cdkFocusInitial
+  >
+    Save
+  </button>
+</mat-dialog-actions>
