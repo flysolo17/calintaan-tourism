@@ -1,23 +1,41 @@
-/* product-form.component.scss */
 .product-form {
   width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 3-column grid
+  gap: 12px;
 
-.full-width {
-  width: 100%;
+  mat-form-field {
+    width: 100%;
+  }
+
+  .full-span {
+    grid-column: span 3;
+  }
+
+  // Span 2 columns for medium fields if needed
+  .span-2 {
+    grid-column: span 2;
+  }
+
+  // Align stock alert toggle to the right
+  .align-end {
+    justify-self: end;
+    align-self: center;
+  }
 }
 
 .image-preview {
   margin-top: 12px;
   text-align: center;
+
+  img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
 }
 
-.image-preview img {
-  max-width: 100%;
-  max-height: 200px;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+.example-margin {
+  margin: 10px;
 }

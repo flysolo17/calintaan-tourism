@@ -1,1 +1,11 @@
 <button mat-flat-button (click)="openDialog()">Create</button>
+<div class="container">
+  @for (item of products$ | async; track $index) {
+  <app-admin-product-card
+    [product]="item"
+    (onClick)="onClick()"
+    class="items"
+  ></app-admin-product-card>
+
+  }
+</div>

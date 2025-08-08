@@ -5,17 +5,35 @@ import { Products } from '../../models/Product';
 import { MatButton } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CreateProductDialogComponent } from './create-product-dialog/create-product-dialog.component';
+import { CommonModule } from '@angular/common';
+import { ProductCardComponent } from '../../common/product-card/product-card.component';
+import { map } from 'rxjs';
+import { AdminProductCardComponent } from './admin-product-card/admin-product-card.component';
 
 @Component({
   selector: 'app-admin-products',
   standalone: true,
-  imports: [MatButton, MatDialogModule],
+  imports: [
+    MatButton,
+    MatDialogModule,
+    CommonModule,
+    ProductCardComponent,
+    AdminProductCardComponent,
+  ],
   templateUrl: './admin-products.component.html',
   styleUrl: './admin-products.component.scss',
 })
 export class AdminProductsComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   productForm$: FormGroup;
+  readonly products$ = this.productService.getAll();
+  readonly categories$ = this.products$.pipe(
+    map((products) =>
+      Array.from(new Set(products.map((p) => p.category.toLocaleUpperCase())))
+    ),
+    map((categories) => categories.sort())
+  );
+
   constructor(private productService: ProductService, private fb: FormBuilder) {
     this.productForm$ = this.fb.group({
       sku: ['', Validators.required],
@@ -30,10 +48,19 @@ export class AdminProductsComponent implements OnInit {
   ngOnInit(): void {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(CreateProductDialogComponent);
+    this.categories$.subscribe((categories) => {
+      const dialogRef = this.dialog.open(CreateProductDialogComponent, {
+        data: { categories: categories },
+      });
 
-    dialogRef.afterClosed().subscribe((result: Products) => {
-      console.log(`Dialog result: ${result}`);
+      dialogRef.afterClosed().subscribe((result: Products | null) => {
+        if (result) {
+          this.productService
+            .create(result)
+            .then(() => alert('New Product Created!'));
+        }
+      });
     });
   }
+  onClick() {}
 }

@@ -1,0 +1,23 @@
+<mat-card class="example-card">
+  <div class="img-container">
+    <img mat-card-image [src]="product.imageUrl" [alt]="product.description" />
+
+    @if (stockAlertEnabledAndLowOnStock) { @if (stockAlertEnabledAndLowOnStock)
+    {
+    <mat-chip class="stock-chip mat-warn mat-mdc-chip-selected"
+      >Low Stock</mat-chip
+    >
+    } }
+  </div>
+
+  <mat-card-content>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-card-title>{{ product.price | currency : "PHP" }}</mat-card-title>
+    <button mat-flat-button color="primary" style="border-radius: 2rem">
+      Add to cart
+    </button>
+  </mat-card-actions>
+</mat-card>

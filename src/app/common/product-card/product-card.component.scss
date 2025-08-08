@@ -1,0 +1,61 @@
+mat-card {
+  max-width: 300px;
+  .img-container {
+    position: relative;
+
+    img {
+      width: 100%;
+      aspect-ratio: 2 / 1.5; // Width : Height ratio
+      object-fit: cover; // Similar to scaleType in Android
+      border-radius: 4px;
+      display: block;
+    }
+
+    .stock-chip {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-weight: 500;
+      z-index: 2;
+    }
+  }
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  mat-card-title {
+    display: block; // Ensure block formatting
+    white-space: nowrap; // Prevent wrapping
+    overflow: hidden; // Hide overflow
+    text-overflow: ellipsis; // Show "..." when truncated
+    max-width: 100%; // Keep inside card width
+  }
+  mat-card-subtitle {
+    display: -webkit-box; // Required for webkit line clamping
+    -webkit-line-clamp: 2; // Limit to 2 lines
+    -webkit-box-orient: vertical; // Vertical box layout
+    overflow: hidden; // Hide the rest
+    text-overflow: ellipsis; // Add "..."
+    line-height: 1.4em; // Adjust for readability
+    min-height: calc(1.4em * 2); // Ensure min 2 lines space
+    max-width: 100%;
+  }
+  mat-card-actions {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.stock-chip {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: xx-small;
+  font-weight: 300;
+  z-index: 2;
+}

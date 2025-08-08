@@ -5,12 +5,19 @@ export interface Products {
   sku: string;
   name: string;
   description: string;
+  cost: number;
   price: number;
   imageUrl: string;
   category: string;
   stock: number;
+  stockAlert: StockAlert;
   created: Date;
   updated: Date;
+}
+
+export interface StockAlert {
+  enabled: boolean;
+  lowStockQuantity: number;
 }
 
 export const productsConverter = {
