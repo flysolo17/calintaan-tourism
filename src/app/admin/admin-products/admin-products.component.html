@@ -1,9 +1,11 @@
+<mat-progress-bar *ngIf="loading$" mode="indeterminate"></mat-progress-bar>
+
 <button mat-flat-button (click)="openDialog()">Create</button>
 <div class="container">
-  @for (item of products$ | async; track $index) {
+  @for (item of products$; track $index) {
   <app-admin-product-card
     [product]="item"
-    (onClick)="onClick()"
+    (onClick)="onClick(item.id)"
     class="items"
   ></app-admin-product-card>
 

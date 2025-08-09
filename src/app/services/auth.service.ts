@@ -68,7 +68,6 @@ export class AuthService {
   }
   getCurrentUser() {
     let user = this.auth.currentUser;
-
     const uid = user?.uid ?? 'bu';
     return getDoc(doc(this.collectionRef, uid).withConverter(usersConverter));
   }

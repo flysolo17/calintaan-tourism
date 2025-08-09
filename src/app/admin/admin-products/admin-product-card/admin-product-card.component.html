@@ -16,7 +16,12 @@
   </mat-card-content>
   <mat-card-actions>
     <mat-card-title>{{ product.price | currency : "PHP" }}</mat-card-title>
-    <button mat-flat-button color="primary" style="border-radius: 2rem">
+    <button
+      mat-flat-button
+      color="primary"
+      style="border-radius: 2rem"
+      (click)="handleClick()"
+    >
       View
     </button>
   </mat-card-actions>

@@ -13,6 +13,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminTransactionsComponent } from './admin/admin-transactions/admin-transactions.component';
+import { AdminViewProductComponent } from './admin/admin-products/admin-view-product/admin-view-product.component';
 
 export const routes: Routes = [
   {
@@ -86,8 +87,18 @@ export const routes: Routes = [
       },
       {
         path: 'products',
-        component: AdminProductsComponent,
+        children: [
+          {
+            path: '',
+            component: AdminProductsComponent,
+          },
+          {
+            path: ':id',
+            component: AdminViewProductComponent,
+          },
+        ],
       },
+
       {
         path: 'orders',
         component: AdminOrdersComponent,
