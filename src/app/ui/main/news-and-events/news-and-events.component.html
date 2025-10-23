@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <span>News and events</span>
+  <div class="spacer"></div>
+  <button mat-flat-button color="primary" (click)="createPost()">
+    <mat-icon>add</mat-icon>
+    Create Post
+  </button>
+</mat-toolbar>
+@if (loading) {
+<mat-progress-bar class="w-100" mode="indeterminate"></mat-progress-bar>
+}
+
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab
+    ><ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon p-3">article</mat-icon>
+      News
+    </ng-template>
+    <div class="container">
+      @for (item of news$ | async; track $index) {
+
+      <app-news-card [news]="item"></app-news-card>
+      }
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon p-3">event</mat-icon>
+      Events
+    </ng-template>
+    <div class="container">
+      @for (item of events$ | async; track $index) {
+
+      <app-event-card [event]="item"></app-event-card>
+      }
+    </div></mat-tab
+  >
+</mat-tab-group>

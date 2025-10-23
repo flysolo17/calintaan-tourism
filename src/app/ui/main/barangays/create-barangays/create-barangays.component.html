@@ -1,0 +1,217 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="onBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Create Barangay</span>
+</mat-toolbar>
+
+@if (loading) {
+<mat-progress-bar mode="indeterminate" class="w-100"></mat-progress-bar>
+}
+
+<form [formGroup]="barangayForm" (ngSubmit)="onSubmit()" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Barangay Information</mat-card-title>
+      <mat-card-subtitle>
+        Provide complete details below to help create a well-presented and
+        informative barangay profile.
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="p-3">
+      <!-- Basic Information -->
+      <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="barangayForm.get('name')?.hasError('required')">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput rows="3" formControlName="description"></textarea>
+        <mat-error
+          *ngIf="barangayForm.get('description')?.hasError('required')"
+        >
+          Description is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="row">
+        <mat-form-field class="half-width">
+          <mat-label>Population</mat-label>
+          <input matInput type="number" formControlName="population" required />
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <mat-label>Area Size (km²)</mat-label>
+          <input matInput type="number" formControlName="areaSize" />
+        </mat-form-field>
+      </div>
+
+      <!-- Coordinates -->
+      <div class="row">
+        <mat-form-field class="half-width">
+          <mat-label>Latitude</mat-label>
+          <input matInput type="number" formControlName="latitude" />
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <mat-label>Longitude</mat-label>
+          <input matInput type="number" formControlName="longitude" />
+        </mat-form-field>
+      </div>
+
+      <!-- Text Areas -->
+      <mat-form-field class="full-width">
+        <mat-label>Culture</mat-label>
+        <textarea matInput rows="2" formControlName="culture"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>History</mat-label>
+        <textarea matInput rows="3" formControlName="history"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Economy</mat-label>
+        <textarea matInput rows="2" formControlName="economy"></textarea>
+      </mat-form-field>
+
+      <!-- Dynamic Chips Section -->
+      <div class="chips-group">
+        <mat-form-field class="w-100">
+          <mat-label>Main Products</mat-label>
+          <mat-chip-grid #productsList aria-label="Main Products">
+            <mat-chip-row
+              *ngFor="let p of mainProducts.controls; let i = index"
+              (removed)="removeChip(i, 'mainProducts')"
+            >
+              {{ p.value }}
+              <button matChipRemove><mat-icon>cancel</mat-icon></button>
+            </mat-chip-row>
+            <input
+              placeholder="Add product..."
+              [matChipInputFor]="productsList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addChip($event, 'mainProducts')"
+            />
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+
+      <div class="chips-group">
+        <mat-form-field class="w-100">
+          <mat-label>Schools</mat-label>
+          <mat-chip-grid #schoolsList aria-label="Schools">
+            <mat-chip-row
+              *ngFor="let s of schools.controls; let i = index"
+              (removed)="removeChip(i, 'schools')"
+            >
+              {{ s.value }}
+              <button matChipRemove><mat-icon>cancel</mat-icon></button>
+            </mat-chip-row>
+            <input
+              placeholder="Add school..."
+              [matChipInputFor]="schoolsList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addChip($event, 'schools')"
+            />
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+
+      <div class="chips-group">
+        <mat-form-field class="w-100">
+          <mat-label>Health Centers</mat-label>
+          <mat-chip-grid #healthList aria-label="Health Centers">
+            <mat-chip-row
+              *ngFor="let h of healthCenters.controls; let i = index"
+              (removed)="removeChip(i, 'healthCenters')"
+            >
+              {{ h.value }}
+              <button matChipRemove><mat-icon>cancel</mat-icon></button>
+            </mat-chip-row>
+            <input
+              placeholder="Add health center..."
+              [matChipInputFor]="healthList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addChip($event, 'healthCenters')"
+            />
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+
+      <div class="chips-group">
+        <mat-form-field class="w-100">
+          <mat-label>Transportation</mat-label>
+          <mat-chip-grid #transpoList aria-label="Transportation">
+            <mat-chip-row
+              *ngFor="let t of transportation.controls; let i = index"
+              (removed)="removeChip(i, 'transportation')"
+            >
+              {{ t.value }}
+              <button matChipRemove><mat-icon>cancel</mat-icon></button>
+            </mat-chip-row>
+            <input
+              placeholder="Add transport..."
+              [matChipInputFor]="transpoList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addChip($event, 'transportation')"
+            />
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+
+      <!-- Emergency Contacts -->
+      <div formGroupName="emergencyContacts" class="mt-3">
+        <h3>Emergency Contacts</h3>
+        <div class="row">
+          <mat-form-field class="half-width">
+            <mat-label>Police</mat-label>
+            <input matInput formControlName="police" />
+          </mat-form-field>
+
+          <mat-form-field class="half-width">
+            <mat-label>Fire</mat-label>
+            <input matInput formControlName="fire" />
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="half-width">
+            <mat-label>Hospital</mat-label>
+            <input matInput formControlName="hospital" />
+          </mat-form-field>
+
+          <mat-form-field class="half-width">
+            <mat-label>Barangay Hall</mat-label>
+            <input matInput formControlName="barangayHall" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- File Upload -->
+      <div class="file-upload">
+        <mat-label>Images</mat-label>
+        <input type="file" multiple (change)="onFileSelected($event)" />
+        <div *ngIf="images.length > 0" class="preview">
+          <p>{{ images.length }} image(s) selected</p>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="barangayForm.invalid"
+      >
+        Save
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

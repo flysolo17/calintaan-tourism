@@ -1,0 +1,19 @@
+<mat-toolbar>
+  <span>Products</span>
+  <button mat-flat-button color="primary" [routerLink]="'create'">
+    <mat-icon>add</mat-icon>
+    New
+  </button>
+</mat-toolbar>
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="All Products">
+    <div class="products-container">
+      @for (item of products$; track $index) {
+      <app-product-card [product]="item"></app-product-card>
+      }
+    </div>
+  </mat-tab>
+  <mat-tab label="Foods">Content 1</mat-tab>
+  <mat-tab label="Hotels">Content 2</mat-tab>
+  <mat-tab label="Travels and Tours">Content 3</mat-tab>
+</mat-tab-group>

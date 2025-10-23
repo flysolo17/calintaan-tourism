@@ -1,0 +1,236 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="onBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Create Product</span>
+</mat-toolbar>
+
+<div class="container">
+  <!-- 🟩 Step 1: Product Information -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Product Information</mat-card-title>
+      <mat-card-subtitle>Basic details about your product</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="productInformationForm">
+        <mat-form-field>
+          <mat-label>Product Name</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Enter product name"
+          />
+          <mat-error
+            *ngIf="productInformationForm.get('name')?.hasError('required')"
+          >
+            Product name is required
+          </mat-error>
+          <mat-error
+            *ngIf="productInformationForm.get('name')?.hasError('minlength')"
+          >
+            Minimum 3 characters required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Select Product Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option [value]="'Foods'">Foods</mat-option>
+            <mat-option value="Travels and Tours">
+              Travels and Tours</mat-option
+            >
+            <mat-option value="Hotels">Hotels</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="productInformationForm.get('type')?.hasError('required')"
+          >
+            Product type is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            formControlName="description"
+            rows="3"
+            placeholder="Describe your product"
+          ></textarea>
+          <mat-error
+            *ngIf="
+              productInformationForm.get('description')?.hasError('required')
+            "
+          >
+            Description is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              productInformationForm.get('description')?.hasError('minlength')
+            "
+          >
+            Minimum 10 characters required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Base Price</mat-label>
+          <input
+            type="number"
+            matInput
+            formControlName="price"
+            placeholder="Enter price"
+          />
+          <mat-error
+            *ngIf="productInformationForm.get('price')?.hasError('required')"
+          >
+            Price is required
+          </mat-error>
+          <mat-error
+            *ngIf="productInformationForm.get('price')?.hasError('min')"
+          >
+            Must be greater than 0
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-chip-list">
+          <mat-label>Tags</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Enter tag">
+            @for (fruit of tags(); track fruit) {
+            <mat-chip-row
+              (removed)="remove(fruit)"
+              [editable]="true"
+              [aria-description]="'press enter to edit ' + fruit"
+            >
+              {{ fruit }}
+              <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            }
+            <input
+              placeholder="New tag..."
+              formControlName="tags"
+              [matChipInputFor]="chipGrid"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)"
+            />
+          </mat-chip-grid>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Location (optional)</mat-card-title>
+      <mat-card-subtitle
+        >Address and coordinates for the product</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="locationForm" class="form-grid">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            formControlName="address"
+            placeholder="Enter address"
+          />
+          <mat-error *ngIf="locationForm.get('address')?.hasError('required')">
+            Address is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Latitude</mat-label>
+          <input type="number" matInput formControlName="latitude" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Longitude</mat-label>
+          <input type="number" matInput formControlName="longitude" />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Contact Information</mat-card-title>
+      <mat-card-subtitle
+        >Provide contact details for customers</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="contactForm" class="form-grid">
+        <mat-form-field>
+          <mat-label>Phone</mat-label>
+          <input
+            matInput
+            formControlName="phone"
+            placeholder="Enter phone number"
+          />
+          <mat-error *ngIf="contactForm.get('phone')?.hasError('pattern')">
+            Invalid phone number format
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter email" />
+          <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+            Invalid email address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Website</mat-label>
+          <input
+            matInput
+            formControlName="website"
+            placeholder="Enter website URL"
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- 🟩 Step 4: Discounts -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Discounts</mat-card-title>
+      <mat-card-subtitle
+        >Define discounts and promotional periods</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="discountsForm" class="form-grid">
+        <mat-form-field>
+          <mat-label>Discount (%)</mat-label>
+          <input type="number" matInput formControlName="percentage" />
+          <mat-error *ngIf="discountsForm.get('percentage')?.hasError('max')">
+            Max discount is 100%
+          </mat-error>
+        </mat-form-field>
+
+        <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- 🟩 Submit -->
+  <div class="submit-section">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()"
+      [disabled]="!isFormValid()"
+    >
+      Submit Product
+    </button>
+  </div>
+</div>

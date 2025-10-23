@@ -1,0 +1,42 @@
+<mat-card class="event-card">
+  <img
+    mat-card-image
+    [src]="event.image"
+    alt="Event image"
+    class="event-image"
+  />
+
+  <mat-card-content class="content">
+    <div class="date-section" *ngIf="eventDate">
+      <div class="month">{{ eventDate | date : "MMM" | uppercase }}</div>
+      <div class="day">{{ eventDate | date : "dd" }}</div>
+    </div>
+
+    <div class="details">
+      @if(event.eventInformation) {
+      <div class="location">
+        <mat-icon class="location-icon">location_on</mat-icon>
+        {{ event.eventInformation.location || "Calintaan" }}
+      </div>
+
+      }
+
+      <div class="event-badge">
+        <span class="badge">{{ eventDate | date : "MMM dd" | uppercase }}</span>
+        <span class="badge">
+          <mat-icon class="location-icon">location_on</mat-icon>
+          {{ event.eventInformation?.location || "Calintaan" }}
+        </span>
+        <span class="badge"> Upcoming </span>
+      </div>
+
+      <h3 class="event-title">{{ event.title }}</h3>
+      <div class="description">{{ event.description }}</div>
+
+      <div class="meta">
+        <mat-icon>schedule</mat-icon>
+        Starts from {{ event.eventInformation?.time || "" }}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

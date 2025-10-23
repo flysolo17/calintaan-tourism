@@ -1,0 +1,76 @@
+<app-topbar
+  (login)="onLogin()"
+  (signUp)="onSignUp()"
+  [user]="user$ | async"
+  (searchTextChange)="onSearchTextChange($event)"
+></app-topbar>
+<section class="top-tabs-container">
+  <nav class="top-tabs">
+    <ul>
+      <li
+        *ngFor="let tab of tabs; let i = index"
+        (mouseenter)="onHover(i)"
+        (mouseleave)="onLeave()"
+        [class.active]="i === selectedTab"
+      >
+        {{ tab }}
+      </li>
+    </ul>
+  </nav>
+</section>
+
+<app-carousel></app-carousel>
+
+<section class="favorites">
+  <div class="header">
+    <h2>Travelers' favorite choices</h2>
+  </div>
+
+  <div class="carousel-container">
+    <button mat-icon-button class="nav-btn left" (click)="scrollLeft()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <div class="scroll-wrapper" #scrollContainer>
+      @for (item of products$ | async; track $index) {
+      <app-product-card [product]="item"></app-product-card>
+      }
+    </div>
+
+    <button mat-icon-button class="nav-btn right" (click)="scrollRight()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="see-more">
+    <button mat-stroked-button color="primary">See more</button>
+  </div>
+</section>
+
+<section class="barangays">
+  <div class="header">
+    <h2>Where to next?</h2>
+  </div>
+
+  <div class="carousel-wrapper">
+    <button mat-icon-button class="nav-btn left" (click)="scrollLeft()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <!-- Scrollable container -->
+    <div class="card-scroll" #scrollContainer>
+      @for (item of barangays$ | async; track $index) {
+      <app-barangay-card [barangay]="item"></app-barangay-card>
+      }
+    </div>
+
+    <!-- Right scroll button -->
+    <button mat-icon-button class="nav-btn right" (click)="scrollRight()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="see-all">
+    <button mat-stroked-button color="primary">See all</button>
+  </div>
+</section>

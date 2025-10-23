@@ -1,0 +1,38 @@
+<mat-card appearance="outlined">
+  <img mat-card-image [src]="product.images[0]" alt="{{ product.name }}" />
+  <div class="product-information-container">
+    <span class="brief-tag"
+      >{{ product.type }} @if (product.location) { •
+      {{ product.location.address }}
+      }
+    </span>
+    <mat-card-title class="title">{{ product.name }}</mat-card-title>
+    <div class="tags-container">
+      @for (item of product.tags; track $index) {
+      <span class="tags">{{ item }}</span>
+      }
+    </div>
+
+    <div class="ratings">
+      <mat-icon>star</mat-icon>
+      <span class="rating-value">4.4</span>
+      <span class="rating-count"
+        >({{ product.reviewsCount }}) • {{ product.bookingCount }}+ booked</span
+      >
+    </div>
+
+    <div class="spacer"></div>
+
+    <mat-card-title class="pricing">
+      From <span class="currency">₱{{ product.price }}</span>
+    </mat-card-title>
+    @if (product.discounts) {
+    <div class="discount-tag">
+      <span class="sale-badge">{{ product.discounts.description }}</span>
+      <span class="discount-text">
+        {{ product.discounts?.percentage }}% off</span
+      >
+    </div>
+    }
+  </div>
+</mat-card>

@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <span>Barangays</span>
+  <div class="spacer"></div>
+  <button mat-flat-button color="primary" [routerLink]="'create'">
+    <mat-icon>add</mat-icon>
+    New
+  </button>
+</mat-toolbar>
+@if(loading) {
+<mat-progress-bar mode="indeterminate" class="w-100"></mat-progress-bar>
+} @if (!loading && barangays.length == 0) {
+<div class="empty-container">
+  <h1>No Barangay Found!</h1>
+</div>
+} @else {
+<section class="barangay-list">
+  <h2>Explore Barangays</h2>
+
+  <div class="card-list">
+    <app-barangay-card
+      *ngFor="let brgy of barangays"
+      [barangay]="brgy"
+    ></app-barangay-card>
+  </div>
+</section>
+
+}

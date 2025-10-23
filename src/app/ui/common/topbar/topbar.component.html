@@ -1,0 +1,31 @@
+<mat-toolbar class="toolbar">
+  <div class="action-container">
+    <span>Calintaan Tourism</span>
+    <div class="actions" *ngIf="user == null; else profile">
+      <button mat-button aria-label="Sign up" (click)="onSignUp()">
+        Sign up
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="onLogin()"
+        aria-label="Login"
+      >
+        Login
+      </button>
+    </div>
+    <ng-template #profile>
+      <div class="profile-container">
+        <small class="">{{ user?.name }}</small>
+        <img
+          *ngIf="user?.profile"
+          [src]="user?.profile"
+          alt="User Avatar"
+          width="40"
+          height="40"
+          class="rounded-circle"
+        />
+      </div>
+    </ng-template>
+  </div>
+</mat-toolbar>

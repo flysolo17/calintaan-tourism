@@ -1,0 +1,101 @@
+  🟩 Step 2: Location
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Location</mat-card-title>
+      <mat-card-subtitle
+        >Address and coordinates for the product</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="locationForm" class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            formControlName="address"
+            placeholder="Enter address"
+          />
+          <mat-error *ngIf="locationForm.get('address')?.hasError('required')">
+            Address is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Latitude</mat-label>
+          <input type="number" matInput formControlName="latitude" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Longitude</mat-label>
+          <input type="number" matInput formControlName="longitude" />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- 🟩 Step 3: Contact Information -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Contact Information</mat-card-title>
+      <mat-card-subtitle
+        >Provide contact details for customers</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="contactForm" class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input
+            matInput
+            formControlName="phone"
+            placeholder="Enter phone number"
+          />
+          <mat-error *ngIf="contactForm.get('phone')?.hasError('pattern')">
+            Invalid phone number format
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter email" />
+          <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+            Invalid email address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Website</mat-label>
+          <input
+            matInput
+            formControlName="website"
+            placeholder="Enter website URL"
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- 🟩 Step 4: Discounts -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Discounts</mat-card-title>
+      <mat-card-subtitle
+        >Define discounts and promotional periods</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="discountsForm" class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Discount (%)</mat-label>
+          <input type="number" matInput formControlName="percentage" />
+          <mat-error *ngIf="discountsForm.get('percentage')?.hasError('max')">
+            Max discount is 100%
+          </mat-error>
+        </mat-form-field>
+
+        <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+      </form>
+    </mat-card-content>
+  </mat-card>

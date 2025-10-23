@@ -1,0 +1,152 @@
+mat-card {
+  width: 280px;
+  height: 440px;
+
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .product-information-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .brief-tag {
+    font-size: 0.9rem;
+    color: #757575;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+    color: #212121;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    .tags {
+      flex: 0 1 auto;
+      margin-top: 0.4rem;
+      background-color: #f1f3f4;
+      color: #424242;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      padding: 0.2rem 0.6rem;
+      display: inline-block;
+      width: fit-content;
+    }
+  }
+
+  .ratings {
+    display: flex;
+    align-items: center;
+
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: #555;
+
+    mat-icon {
+      font-size: 1.2rem;
+      color: #ffa000;
+    }
+
+    .rating-value {
+      font-weight: 500;
+      margin-right: 0.3rem;
+    }
+
+    .rating-count {
+      color: #888;
+      font-size: 0.8rem;
+    }
+  }
+
+  .pricing {
+    margin-top: auto;
+    font-size: 1rem;
+    color: #212121;
+    font-weight: 600;
+
+    .currency {
+      color: #d32f2f;
+      font-weight: 700;
+    }
+  }
+
+  .discount {
+    margin-top: 0.3rem;
+    background-color: #ffeb99;
+    color: #000;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    mat-icon {
+      font-size: 1.2rem;
+      color: #000;
+    }
+  }
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.discount-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #fff;
+  border: 1px solid #ff4d4f;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ff4d4f;
+  margin-top: 0.4rem;
+  width: fit-content;
+  line-height: 1;
+
+  .sale-badge {
+    border-radius: 2px;
+    padding: 1px 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .discount-text {
+    color: #ff4d4f;
+    font-weight: 600;
+  }
+}

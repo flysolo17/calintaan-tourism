@@ -1,0 +1,112 @@
+.event-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 360px;
+  margin: 16px;
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-2px);
+}
+
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.content {
+  display: flex;
+  padding: 16px;
+  gap: 16px;
+  border-top: 1px solid #eee; /* Divider */
+}
+
+.date-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  border-radius: 8px;
+  padding: 4px;
+  min-width: 60px;
+  font-weight: bold;
+  text-align: center;
+  background-color: transparent; /* Removed black */
+}
+
+.date-section .month {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.date-section .day {
+  font-size: 1.5rem;
+  margin-top: 2px;
+}
+
+.details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #1976d2;
+}
+
+.location-icon {
+  color: #1976d2;
+}
+
+.event-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  margin: 4px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #1976d2;
+}
+
+.meta mat-icon {
+  margin-right: 4px;
+  color: #1976d2;
+}
+
+.event-badge {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+}

@@ -1,1 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+
+.rounded-3 {
+  border-radius: 2rem !important;
+}
+
+.p-2 {
+  padding: 0.5rem !important;
+}
+
+.loader {
+  width: 36px;
+  aspect-ratio: 1;
+  --_c: no-repeat radial-gradient(farthest-side, #25b09b 92%, #0000);
+  background: var(--_c) top, var(--_c) left, var(--_c) right, var(--_c) bottom;
+  background-size: 12px 12px;
+  animation: l7 1s infinite;
+}
+@keyframes l7 {
+  to {
+    transform: rotate(0.5turn);
+  }
+}
+
+.underline-btn {
+  display: block;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #000 !important;
+  text-transform: none;
+  text-decoration: underline;
+  background: transparent !important;
+  border: none !important;
+  padding: 0.25rem 0 !important;
+  min-width: unset !important;
+  box-shadow: none !important;
+
+  &:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+    background: transparent !important;
+  }
+
+  span {
+    text-decoration: underline;
+  }
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.news-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: calc(1.3em * 2);
+}
+
+.badge {
+  background: #e9f3ff;
+  color: #007bff;
+  flex: 1 0 auto;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}

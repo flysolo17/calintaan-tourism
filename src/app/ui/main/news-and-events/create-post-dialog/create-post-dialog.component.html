@@ -1,0 +1,120 @@
+<h2 mat-dialog-title>Create Post</h2>
+
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="postForm" class="form-container">
+    <mat-form-field class="w-full">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter post title" />
+      <mat-error *ngIf="postForm.get('title')?.hasError('required')">
+        Title is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        rows="4"
+        formControlName="description"
+        placeholder="Write something interesting..."
+      ></textarea>
+      <mat-error *ngIf="postForm.get('description')?.hasError('required')">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of postTypes" [value]="type.value">
+          {{ type.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="postForm.get('type')?.hasError('required')">
+        Type is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>
+        @if(postForm.get('type')?.value === 'event') { Registration link } @else
+        { Full news link }
+      </mat-label>
+      <input matInput formControlName="link" placeholder="https://..." />
+    </mat-form-field>
+
+    @if (postForm.get('type')?.value === 'event') {
+    <div class="event-info-container">
+      <mat-card-subtitle class="mb-2">Event Information</mat-card-subtitle>
+
+      <div class="event-grid">
+        <!-- Location -->
+        <mat-form-field floatLabel="always" class="full-width">
+          <mat-label>Location</mat-label>
+          <mat-select formControlName="location" required>
+            @for (item of locations; track $index) {
+            <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="postForm.get('location')?.hasError('required')">
+            Location is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Time -->
+        <mat-form-field floatLabel="always">
+          <mat-label>Time</mat-label>
+          <mat-select formControlName="time" required>
+            @for (item of time; track $index) {
+            <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="postForm.get('time')?.hasError('required')">
+            Time is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    }
+
+    <div class="image-upload">
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onImageSelected($event)"
+        hidden
+        #fileInput
+      />
+      <button mat-stroked-button type="button" (click)="fileInput.click()">
+        <mat-icon>add</mat-icon>
+        Choose Image
+      </button>
+
+      <div class="image-preview" *ngIf="previewUrl">
+        <img [src]="previewUrl" alt="Preview" />
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="submit()"
+    [disabled]="postForm.invalid || !selectedImage"
+  >
+    Submit
+  </button>
+</mat-dialog-actions>

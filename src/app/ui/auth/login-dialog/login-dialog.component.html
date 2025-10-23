@@ -1,0 +1,40 @@
+<mat-dialog-content class="login-dialog">
+  <h1 mat-dialog-title>Log in or sign up</h1>
+
+  <!-- Google Button -->
+  <button
+    mat-stroked-button
+    class="login-btn google-btn w-100"
+    (click)="loginWithGoogle()"
+  >
+    <div class="btn-content">
+      <img
+        src="../../../../assets/icons/google.png"
+        alt="Google"
+        class="btn-icon"
+      />
+      <span class="btn-text">Google</span>
+    </div>
+  </button>
+
+  <!-- Facebook Button -->
+  <button
+    mat-flat-button
+    class="login-btn facebook-btn w-100"
+    (click)="loginWithFacebook()"
+  >
+    <div class="btn-content">
+      <img
+        src="../../../../assets/icons/facebook.png"
+        alt="Facebook"
+        class="btn-icon"
+      />
+      <span class="btn-text">Facebook</span>
+    </div>
+  </button>
+  <button mat-button mat-dialog-close class="underline-btn">
+    <span>More options</span>
+  </button>
+
+  <div class="loader" *ngIf="loading"></div>
+</mat-dialog-content>

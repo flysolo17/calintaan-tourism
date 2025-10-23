@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+mat-card {
+  padding: 1rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 1rem;
+  }
+}
+
+.submit-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}

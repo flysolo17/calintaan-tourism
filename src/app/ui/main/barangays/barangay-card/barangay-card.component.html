@@ -1,0 +1,13 @@
+<mat-card class="barangay-card" appearance="outlined">
+  <div class="image-container">
+    <img
+      [src]="barangay.images[0]"
+      [alt]="barangay.name"
+      class="barangay-image"
+      loading="lazy"
+    />
+    <div class="overlay">
+      <h3 class="barangay-name">{{ barangay.name }}</h3>
+    </div>
+  </div>
+</mat-card>

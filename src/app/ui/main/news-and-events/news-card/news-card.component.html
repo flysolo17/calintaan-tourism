@@ -1,0 +1,20 @@
+<mat-card class="news-card">
+  <div class="card-header">
+    <span class="badge">Latest</span>
+    <span class="time">3h ago</span>
+  </div>
+
+  <mat-card-content>
+    <img
+      mat-card-image
+      [src]="news.image"
+      alt="news-image"
+      class="news-image"
+    />
+
+    <h3 class="news-title">{{ news.title }}</h3>
+    <a [href]="news.link" target="_blank" class="read-more">
+      Read more <span class="arrow">→</span>
+    </a>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,19 @@
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  mat-card {
+    width: 100%;
+    max-width: 300px;
+  }
+}

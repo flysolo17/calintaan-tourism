@@ -1,0 +1,16 @@
+<mat-drawer-container class="main-container">
+  <mat-drawer mode="side" opened>
+    <mat-nav-list>
+      @for (link of items$; track link) {
+      <mat-list-item>
+        <mat-icon matListItemIcon>{{ link.icon }}</mat-icon>
+        <a matListItemLine [routerLink]="link.route">{{ link.label }}</a>
+      </mat-list-item>
+      }
+      <mat-list-item> <button (click)="logout()">Logout</button></mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
