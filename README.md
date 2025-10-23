@@ -1,27 +1,35 @@
-# CalintaanTourism
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+# Calintaan Tourism
 
-## Development server
+Welcome to **Calintaan Tourism** your digital guide to discovering the beauty of **Calintaan, Occidental Mindoro**!  
+Our website is dedicated to promoting local attractions, cultural events, and unique products that make Calintaan a must-visit destination.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## ✨ What You Can Do
 
-## Build
+- 🗓️ **Explore Events** – Stay updated on upcoming festivals, local activities, and community happenings.  
+- 📰 **Read the Latest News** – Get the latest updates and announcements about Calintaan.  
+- 🛍️ **Shop Local** – Support small businesses by buying authentic Calintaan products online.  
+- 🎫 **Book Tickets & Hotels** – Plan your trip easily with our ticket booking and accommodation services.  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## 🌅 Why Visit Calintaan?
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+From pristine beaches and vibrant coral reefs to warm-hearted locals and delicious cuisine,  
+Calintaan offers an unforgettable experience for every traveler.
 
-## Running end-to-end tests
+## 🧭 Our Mission
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+To promote **Calintaan’s natural beauty, culture, and tourism** through modern digital experiences 
+connecting travelers with local businesses and communities.
 
-## Further help
+## 📞 Contact Us
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Have questions, suggestions, or partnership inquiries?  
+📧 Email us at: **info@calintaantourism.ph**  
+🌐 Visit us at: **[www.calintaantourism.ph](https://www.calintaantourism.ph)**  
+
+---
+
+> “Discover Calintaan — where nature, culture, and adventure meet.”
